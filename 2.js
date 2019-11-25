@@ -1,20 +1,27 @@
-const headers = [...document.querySelectorAll('table th')];
-let keys = headers.map(h => h.textContent);  // свойства объектов
+const table = document.querySelector('table');
 
-const rows = [...document.querySelectorAll('table tr')];
-let values = [];
-
-let table = [];  // здесь будут объекты
-
-for (let i = 1; i < rows.length; i++) {
-	let obj = {};
-	values = [...rows[i].querySelectorAll('td')].map(r => r.textContent);
+function objectBuilder(table){
 	
-	for (let j = 0; j < keys.length; j++) {
-		obj[keys[j]] = values[j];
+	const headers = [...table.querySelectorAll('th')];
+	let keys = headers.map(h => h.textContent);  // свойства объектов
+
+	const rows = [...table.querySelectorAll('tr')];
+	let values = [];
+
+	let objects = [];  // здесь будут объекты
+
+	for (let i = 1; i < rows.length; i++) {
+		let obj = {};
+		values = [...rows[i].querySelectorAll('td')].map(r => r.textContent);
+		
+		for (let j = 0; j < keys.length; j++) {
+			obj[keys[j]] = values[j];
+		};
+		
+		objects.push(obj);
 	};
-	
-	table.push(obj);
+
+	return objects;
 };
 
-console.table(table)
+console.table(objectBuilder(table));
