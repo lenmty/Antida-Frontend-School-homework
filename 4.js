@@ -1,3 +1,5 @@
+// Вывести в правильном порядке.
+
 const print1 = () => console.log('каждый');
 const print2 = () => console.log('охотник');
 const print3 = () => console.log('желает');
