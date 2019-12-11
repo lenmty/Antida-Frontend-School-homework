@@ -6,27 +6,27 @@
 // используя getArea и getPerimetr (использовать call, apply или bind).
 
 
-function Rectangle(a, b){
+function Rectangle(a, b, measure="см"){
     this.a = a;
     this.b = b;
-    this.measure = "см."
+    this.measure = measure;
 
     this.getInfo = function(){ 
-        return `Ширина: ${a} см., высота: ${b} см.` 
+        return `Ширина: ${this.a} ${this.measure}, высота: ${this.b} ${this.measure}.` 
     };
 }
 
 function getArea(){
-    return `Площадь: ${this.a * this.b} ${this.measure}`;
+    return this.a * this.b;
 }
 
 function getPerimeter(){
-    return `Периметр: ${(this.a + this.b) * 2} ${this.measure}`;
+    return (this.a + this.b) * 2;
 }
 
 let rect = new Rectangle(5, 10);
 console.log("Создан прямоугольник.", rect.getInfo());
-console.log(getArea.call(rect), getPerimeter.call(rect));
+console.log(`Площадь: ${getArea.call(rect)}, периметр: ${getPerimeter.call(rect)}`);
 
 // let getRectArea = getArea.bind(rect);
 // let getRectPerimeter = getPerimeter.bind(rect)
