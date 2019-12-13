@@ -19,41 +19,18 @@ var response = { data: [
 
 // возвращает сумму всех очков
 function totalScore(data) {
-	let totalScore = 0;
-	
-	data.forEach( (item) => { totalScore += item.score; } );
-	
-	return totalScore;
+	return data.reduce( (sum, item) => sum + item.score, 0 );
 };
 
 // возвращает массив с участниками старше 18
 function fullAge(data) {
-	let adult = [];
-	
-	data.forEach( item => {
-		if (item.age > 18) {
-			adult.push(item);
-		};
-	});
-	
-	return adult;
+	return data.filter( item => item.age > 18);
 };
 
 // возвращает массив с участниками, имена которых начинаются на B 
 function startsWith(data, letter) {
-	let theOnes = [];
-	
-	data.forEach( item => {
-		if (item.name.toLowerCase().startsWith(letter.toLowerCase())) {
-			theOnes.push(item);
-		};
-	});
-	
-	if (theOnes.length == 0) {
-		return "Таких нет :с"
-	} else {
-		return theOnes;
-	};
+	let theOnes = data.filter( item => item.name.toLowerCase().startsWith(letter.toLowerCase()));
+    return theOnes.length ? theOnes : "Таких нет :с";
 };
 
 // возвращает массив со строками вида: “Bob - 18: 10” используя метод toString, который предварительно добавлен в изначальный объект
@@ -65,14 +42,9 @@ function beautyPrint(data) {
 function groupByAge(data) {
 	let scores = {};
 	
-	data.forEach( item => {
-		if (item.age in scores) {
-			scores[item.age] += item.score;
-		} else {
-			scores[item.age] = item.score;
-		}
+	data.forEach( item => { 
+		item.age in scores ? scores[item.age] += item.score : scores[item.age] = item.score; 
 	});
-	
 	return Object.values(scores).map(n => String(n));
 };
 
