@@ -10,9 +10,7 @@ var response = { data: [
 	{ score: 12, name: 'Lera', age: 18 },
 	{ score: 10, name: 'Bobby', age: 13 }],
 	toString: function(){
-		let bprint = [];
-		this.data.forEach( item => { bprint.push(`${item.name} - ${item.age}: ${item.score}`) });
-		return bprint;
+		return this.data.map( item => `${item.name} - ${item.age}: ${item.score}` );
 	}
 }
 
@@ -40,11 +38,7 @@ function beautyPrint(data) {
 
 // возвращает массив чисел в виде строк, суммы очков участников, сгруппированных по возрасту
 function groupByAge(data) {
-	let scores = {};
-	
-	data.forEach( item => { 
-		item.age in scores ? scores[item.age] += item.score : scores[item.age] = item.score; 
-	});
+	let scores = data.reduce( (acc, cur) => ((acc[cur.age] ? acc[cur.age] += cur.score : acc[cur.age] = cur.score), acc), {} );
 	return Object.values(scores).map(n => String(n));
 };
 
