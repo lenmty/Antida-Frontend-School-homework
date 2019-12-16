@@ -27,7 +27,7 @@ function fullAge(data) {
 
 // возвращает массив с участниками, имена которых начинаются на B 
 function startsWith(data, letter) {
-	let theOnes = data.filter( item => item.name.toLowerCase().startsWith(letter.toLowerCase()));
+	let theOnes = data.filter( item => item.name[0].toLowerCase() == letter.toLowerCase() );
     return theOnes.length ? theOnes : "Таких нет :с";
 };
 
