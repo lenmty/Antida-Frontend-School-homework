@@ -4,7 +4,7 @@
 * - если номер меньше трехзначного числа, слева заполняем нулями
 * - состояние счета при создании, учитывается в транзакциях
 */
-let takenNumbers = [];
+const takenNumbers = [];
 
 function Moneybox(...transactions) {
 	this.accountNumber = getAccountNumber();
@@ -62,7 +62,7 @@ function getRandomInt(min, max) {
 function getAccountNumber() {
 	let num = getRandomInt(1, 1000);
 
-	while(takenNumbers.indexOf( num ) != -1) {
+	while(takenNumbers.includes( num ) != -1) {
 		num = getRandomInt(1, 1000);
 	}
 	takenNumbers.push(num);
