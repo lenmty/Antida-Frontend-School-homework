@@ -6,7 +6,6 @@
 
 class Human {
 	constructor(name, lastName) {
-		// попробовать короткую запись
 		this._name = name;
 		this._lastName = lastName;
 		this._greeting = "Hello";
@@ -56,6 +55,3 @@ let ram = [
 let even = ram.filter( (_, i) => i%2==0 );
 let adult = ram.filter( person => person.isAdult() );
 let underagesName = ram.filter( person => !person.isAdult() ).map( child => child.getName() );
-
-// П.С. Проявите творческий подход, примените все возможности языка из урока. 
-// П.П.С. Попробуйте пофантазировать и доработать классы через новые расширения, добавить свойства и методы, геттеры, сеттеры.
